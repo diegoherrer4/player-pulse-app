@@ -27,6 +27,7 @@ const UserWidget = ({ userId, picturePath }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await response.json();
+    console.log(`User: ${data}`);
     setUser(data);
   };
 
@@ -38,15 +39,7 @@ const UserWidget = ({ userId, picturePath }) => {
     return null;
   }
 
-  const {
-    firstName,
-    lastName,
-    location,
-    sport,
-    viewedProfile,
-    impressions,
-    friends,
-  } = user;
+  const { firstName, lastName, location, sport, friends } = user;
 
   return (
     <WidgetWrapper>

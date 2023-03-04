@@ -1,12 +1,21 @@
 import Post from "../models/Post.js";
 import User from "../models/User.js";
+import { s3Uploadv2 } from "../middleware/s3Service.js";
 
 /* CREATE */
 
 export const createPost = async (req, res) => {
   try {
-    const { userId, description, picturePath } = req.body;
+    const { userId, description } = req.body;
     const user = await User.findById(userId);
+
+    let picturePath;
+    if (req.file) {
+      // Upload the file to S3
+      const results = await s3Uploadv2(req.file);
+      picturePath = results.Location;
+    }
+
     const newPost = new Post({
       userId,
       firstName: user.firstName,
@@ -21,8 +30,8 @@ export const createPost = async (req, res) => {
 
     await newPost.save();
 
-    const post = await Post.find();
-    res.status(201).json(post);
+    const posts = await Post.find();
+    res.status(201).json(posts);
   } catch (err) {
     res.status(409).json({ message: err.message });
   }

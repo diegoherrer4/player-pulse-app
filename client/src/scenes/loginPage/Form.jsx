@@ -105,6 +105,7 @@ const Form = () => {
   return (
     <Formik
       onSubmit={handleFormSubmit}
+      encType="multipart/form-data"
       initialValues={isLogin ? initialValuesLogin : initialValuesRegister}
       validationSchema={isLogin ? loginSchema : registerSchema}
     >
@@ -179,7 +180,7 @@ const Form = () => {
                   p="1rem"
                 >
                   <Dropzone
-                    acceptedFiles=".jpg,.jpeg,.png"
+                    acceptedFiles=".jpg,.jpeg,.png,.gif"
                     multiple={false}
                     onDrop={(acceptedFiles) =>
                       setFieldValue("picture", acceptedFiles[0])

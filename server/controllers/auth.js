@@ -1,35 +1,31 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import { s3Uploadv2 } from "../middleware/s3Service.js";
 
-/* REGISTER USER */
+// /* REGISTER USER S3 */
 export const register = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      picturePath,
-      friends,
-      location,
-      sport,
-    } = req.body;
-
+    const { firstName, lastName, email, password, friends, location, sport } =
+      req.body;
+    console.log(req.body);
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
+    const file = req.file; // get the uploaded file from the request
+
+    // Upload the file to S3
+    const results = await s3Uploadv2(file);
+    console.log(results);
 
     const newUser = new User({
       firstName,
       lastName,
       email,
       password: passwordHash,
-      picturePath,
+      picturePath: results.Location,
       friends,
       location,
       sport,
-      viewedProfile: Math.floor(Math.random() * 10000),
-      impressions: Math.floor(Math.random() * 10000),
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
