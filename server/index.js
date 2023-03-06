@@ -53,14 +53,11 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 //CSP for aws
-app.use((req, res, next) => {
-  res.setHeader(
-    "Content-Security-Policy",
-    "default-src 'self'; img-src 'self' https://aws-s3-playerpulse-bucket.s3.amazonaws.com; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.googleapis.com"
-  );
-  next();
-});
-
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 /* MONGOOSE SETUP */
 
 const PORT = process.env.PORT || 6001;
