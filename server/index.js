@@ -44,11 +44,14 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 //CSP for AWS
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
-  })
-);
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "img-src 'self' https://aws-s3-playerpulse-bucket.s3.amazonaws.com"
+  );
+  next();
+});
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", cors(), upload.single("picture"), register);
