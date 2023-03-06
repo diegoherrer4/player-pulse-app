@@ -32,6 +32,14 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 app.use(morgan("dev"));
 // app.use("/assets", express.static(path.join(__dirname, "public/assets")));
+
+//CSP for AWS
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
   app.get("*", (req, res) => {
@@ -42,16 +50,6 @@ if (process.env.NODE_ENV === "production") {
 const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
-
-//CSP for AWS
-
-app.use((req, res, next) => {
-  res.setHeader(
-    "Content-Security-Policy",
-    "img-src 'self' https://aws-s3-playerpulse-bucket.s3.amazonaws.com"
-  );
-  next();
-});
 
 /* ROUTES WITH FILES */
 app.post("/auth/register", cors(), upload.single("picture"), register);
