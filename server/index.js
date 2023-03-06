@@ -43,8 +43,15 @@ const storage = multer.memoryStorage();
 
 const upload = multer({ storage });
 
+//CSP for AWS
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+
 /* ROUTES WITH FILES */
-app.post("/auth/registe", cors(), upload.single("picture"), register);
+app.post("/auth/register", cors(), upload.single("picture"), register);
 app.post("/post", verifyToken, upload.single("picture"), createPost);
 
 /* ROUTES */
@@ -52,15 +59,6 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
-//CSP for aws
-app.use(
-  helmet.contentSecurityPolicy({
-    useDefaults: true,
-    directives: {
-      "img-src": ["'self'", "https: data:"],
-    },
-  })
-);
 /* MONGOOSE SETUP */
 
 const PORT = process.env.PORT || 6001;
