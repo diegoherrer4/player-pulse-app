@@ -54,8 +54,11 @@ app.use("/posts", postRoutes);
 
 //CSP for aws
 app.use(
-  helmet({
-    contentSecurityPolicy: false,
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "img-src": ["'self'", "https: data:"],
+    },
   })
 );
 /* MONGOOSE SETUP */
