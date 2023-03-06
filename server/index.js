@@ -56,10 +56,11 @@ app.use("/posts", postRoutes);
 app.use((req, res, next) => {
   res.setHeader(
     "Content-Security-Policy",
-    "img-src 'self' https://aws-s3-playerpulse-bucket.s3.amazonaws.com"
+    "default-src 'self'; img-src 'self' https://aws-s3-playerpulse-bucket.s3.amazonaws.com; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.googleapis.com"
   );
   next();
 });
+
 /* MONGOOSE SETUP */
 
 const PORT = process.env.PORT || 6001;
