@@ -39,7 +39,7 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        "img-src": ["'self'", "s3.amazonaws.com"],
+        "img-src": ["'self'", "s3.amazonaws.com", "*.s3.amazonaws.com"],
       },
     },
   })
