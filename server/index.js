@@ -36,7 +36,12 @@ app.use(morgan("dev"));
 //CSP for AWS
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", "s3.amazonaws.com"],
+      },
+    },
   })
 );
 
