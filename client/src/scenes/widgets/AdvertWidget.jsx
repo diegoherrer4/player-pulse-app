@@ -21,6 +21,8 @@ const AdvertWidget = () => {
         height="auto"
         alt="advert"
         src="https://aws-s3-playerpulse-bucket.s3.amazonaws.com/ad-litter.jpg"
+        crossOrigin="anonymous"
+        referrerPolicy="no-referrer"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
