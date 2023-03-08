@@ -40,6 +40,7 @@ export const createPost = async (req, res) => {
 /* READ */
 export const getFeedPosts = async (req, res) => {
   try {
+    console.log("Received request to getFeedPosts");
     const post = await Post.find();
     console.log(`Posts: ${post}`);
     res.status(200).json(post);

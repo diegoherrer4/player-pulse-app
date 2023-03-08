@@ -8,8 +8,6 @@ const router = express.Router();
 router.get("/", verifyToken, getFeedPosts);
 router.get("/:userId/posts", verifyToken, getUserPosts);
 
-/* CREATE */
-router.post("/", verifyToken, getFeedPosts);
 /* UPDATE */
 router.patch("/:id/like", verifyToken, likePost);
 

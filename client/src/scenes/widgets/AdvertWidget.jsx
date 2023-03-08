@@ -24,12 +24,14 @@ const AdvertWidget = () => {
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
-        <Typography color={main}>MikaCosmetics</Typography>
-        <Typography color={medium}>mikacosmetics.com</Typography>
+        <Typography color={main}>Purrfect Litter</Typography>
+        <Typography color={medium}>purrfectlitter.com</Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
-        Your pathway to stunning and immaculate beauty and made sure your skin
-        is exfoliating skin and shining like light.
+        Welcome to the world of clean and odor-free homes with our premium cat
+        litter. Our cat litter is your pathway to a spotless and hygienic home,
+        where your cat can comfortably relieve themselves without leaving any
+        unpleasant odors behind.
       </Typography>
     </WidgetWrapper>
   );
