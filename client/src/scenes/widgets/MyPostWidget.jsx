@@ -46,7 +46,7 @@ const MyPostWidget = ({ picturePath }) => {
       formData.append("picturePath", image.name);
     }
 
-    const response = await fetch(`/post`, {
+    const response = await fetch(`https://whisker-gram.herokuapp.com/post`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
