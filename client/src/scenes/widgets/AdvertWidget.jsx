@@ -20,9 +20,7 @@ const AdvertWidget = () => {
         width="100%"
         height="auto"
         alt="advert"
-        src="https://aws-s3-playerpulse-bucket.s3.amazonaws.com/ad-litter.jpg"
-        crossOrigin="anonymous"
-        referrerPolicy="no-referrer"
+        src="https://cors-anywhere.herokuapp.com/https://aws-s3-playerpulse-bucket.s3.amazonaws.com/ad-litter.jpg"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>
