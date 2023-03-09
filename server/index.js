@@ -25,8 +25,8 @@ const __dirname = path.dirname(__filename);
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(helmet());
-app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+// app.use(helmet());
+// app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
@@ -34,16 +34,16 @@ app.use(morgan("dev"));
 // app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 //CSP for AWS
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        "img-src": ["'self'", "s3.amazonaws.com", "*.s3.amazonaws.com"],
-      },
-    },
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+//         "img-src": ["'self'", "s3.amazonaws.com", "*.s3.amazonaws.com"],
+//       },
+//     },
+//   })
+// );
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
