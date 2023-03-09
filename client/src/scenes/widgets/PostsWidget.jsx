@@ -11,7 +11,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getPosts = async () => {
     console.log(token);
-    const response = await fetch("/posts", {
+    const response = await fetch("https://whisker-gram.herokuapp.com/posts", {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
