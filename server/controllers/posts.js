@@ -6,6 +6,7 @@ import { s3Uploadv2 } from "../middleware/s3Service.js";
 
 export const createPost = async (req, res) => {
   try {
+    console.log("request to create post");
     const { userId, description } = req.body;
     const user = await User.findById(userId);
 
@@ -55,6 +56,7 @@ export const getFeedPosts = async (req, res) => {
 
 export const getUserPosts = async (req, res) => {
   try {
+    console.log("Get user posts api call");
     const { userId } = req.params;
     const posts = await Post.find({ userId: userId });
     res.status(200).json(posts);
@@ -67,6 +69,7 @@ export const getUserPosts = async (req, res) => {
 
 export const likePost = async (req, res) => {
   try {
+    console.log("Reading like post");
     const { id } = req.params;
     const { userId } = req.body;
     const post = await Post.findById(id);
