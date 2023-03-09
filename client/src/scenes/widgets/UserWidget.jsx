@@ -22,6 +22,7 @@ const UserWidget = ({ userId, picturePath }) => {
   const main = palette.neutral.main;
 
   const getUser = async () => {
+    console.log("userid: ", userId);
     const response = await fetch(
       `https://whisker-gram.herokuapp.com/users/${userId}`,
       {

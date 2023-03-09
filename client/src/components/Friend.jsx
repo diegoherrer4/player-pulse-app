@@ -22,6 +22,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const isFriend = friends && friends.find((friend) => friend._id === friendId);
 
   const patchFriend = async () => {
+    console.log(`${_id}, ${friendId}`);
     const response = await fetch(`/${_id}/${friendId}`, {
       method: "PATCH",
       headers: {
