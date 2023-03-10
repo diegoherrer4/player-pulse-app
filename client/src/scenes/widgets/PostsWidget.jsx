@@ -11,12 +11,22 @@ const PostsWidget = ({ userId, isProfile = false }) => {
 
   const getPosts = async () => {
     console.log(token);
-    const response = await fetch("https://whisker-gram.herokuapp.com/posts", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+    try {
+      const response = await fetch("https://whisker-gram.herokuapp.com/posts", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      dispatch(setPosts({ posts: data }));
+    } catch (error) {
+      console.error("There was a problem with the GET request:", error);
+    }
   };
 
   const getUserPosts = async () => {
