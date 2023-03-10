@@ -6,7 +6,7 @@ import { s3Uploadv2 } from "../middleware/s3Service.js";
 // /* REGISTER USER S3 */
 export const register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, friends, location, sport } =
+    const { firstName, lastName, email, password, friends, location } =
       req.body;
     console.log(req.body);
     const salt = await bcrypt.genSalt();
@@ -25,7 +25,6 @@ export const register = async (req, res) => {
       picturePath: results.Location,
       friends,
       location,
-      sport,
     });
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);

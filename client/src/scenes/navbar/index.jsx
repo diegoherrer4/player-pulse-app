@@ -56,7 +56,7 @@ const Navbar = () => {
             },
           }}
         >
-          Player Pulse
+          Whisker Gram🐱
         </Typography>
         {isNonMobileScreens && (
           <FlexBetween
