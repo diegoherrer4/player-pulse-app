@@ -25,7 +25,7 @@ const UserWidget = ({ userId, picturePath }) => {
     console.log("userid: ", userId);
     try {
       const response = await fetch(
-        `https://whisker-gram.herokuapp.com/users/${userId}`,
+        `https://whisker-gram.cyclic.app/users/${userId}`,
         {
           method: "GET",
           headers: { Authorization: `Bearer ${token}` },

@@ -14,7 +14,7 @@ const FriendListWidget = ({ userId }) => {
   const getFriends = async () => {
     try {
       const response = await fetch(
-        `https://whisker-gram.herokuapp.com/users/${userId}/friends`,
+        `https://whisker-gram.cyclic.app/users/${userId}/friends`,
         {
           method: "GET",
           headers: {

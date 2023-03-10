@@ -24,7 +24,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const patchFriend = async () => {
     console.log(`${_id}, ${friendId}`);
     const response = await fetch(
-      `https://whisker-gram.herokuapp.com/${_id}/${friendId}`,
+      `https://whisker-gram.cyclic.app/${_id}/${friendId}`,
       {
         method: "PATCH",
         headers: {

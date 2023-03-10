@@ -36,7 +36,7 @@ const PostWidget = ({
 
   const patchLike = async () => {
     const response = await fetch(
-      `https://whisker-gram.herokuapp.com/posts/${postId}/like`,
+      `https://whisker-gram.cyclic.app/posts/${postId}/like`,
       {
         method: "PATCH",
         headers: {
