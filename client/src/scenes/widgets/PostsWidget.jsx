@@ -12,7 +12,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
   const getPosts = async () => {
     console.log(token);
     try {
-      const response = await fetch("https://whisker-gram.herokuapp.com/posts", {
+      const response = await fetch("https://whisker-gram.cyclic.app/posts", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -33,7 +33,7 @@ const PostsWidget = ({ userId, isProfile = false }) => {
     console.log("userId:", userId);
     try {
       const response = await fetch(
-        `https://whisker-gram.herokuapp.com/posts/${userId}/posts`,
+        `https://whisker-gram.cyclic.app/posts/${userId}/posts`,
         {
           method: "GET",
           headers: {
