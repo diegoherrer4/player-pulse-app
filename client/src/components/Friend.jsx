@@ -23,13 +23,16 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     console.log(`${_id}, ${friendId}`);
-    const response = await fetch(`/${_id}/${friendId}`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `https://whisker-gram.herokuapp.com/${_id}/${friendId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const data = await response.json();
     dispatch(setFriends({ friends: data }));
   };
