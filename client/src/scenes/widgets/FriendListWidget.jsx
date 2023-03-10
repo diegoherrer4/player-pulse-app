@@ -12,15 +12,25 @@ const FriendListWidget = ({ userId }) => {
   const friends = useSelector((state) => state.user.friends);
 
   const getFriends = async () => {
-    const response = await fetch(
-      `https://whisker-gram.herokuapp.com/users/${userId}/friends`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+    try {
+      const response = await fetch(
+        `https://whisker-gram.herokuapp.com/users/${userId}/friends`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
-    const data = await response.json();
-    dispatch(setFriends({ friends: data }));
+      const data = await response.json();
+      dispatch(setFriends({ friends: data }));
+    } catch (error) {
+      console.error("There was a problem with the GET request:", error);
+    }
   };
 
   useEffect(() => {

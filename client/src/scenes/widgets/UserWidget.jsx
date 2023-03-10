@@ -23,16 +23,23 @@ const UserWidget = ({ userId, picturePath }) => {
 
   const getUser = async () => {
     console.log("userid: ", userId);
-    const response = await fetch(
-      `https://whisker-gram.herokuapp.com/users/${userId}`,
-      {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
+    try {
+      const response = await fetch(
+        `https://whisker-gram.herokuapp.com/users/${userId}`,
+        {
+          method: "GET",
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
       }
-    );
-    const data = await response.json();
-    console.log(`User: ${data}`);
-    setUser(data);
+      const data = await response.json();
+      console.log(`User: ${data}`);
+      setUser(data);
+    } catch (error) {
+      console.error("There was a problem with the GET request:", error);
+    }
   };
 
   useEffect(() => {
