@@ -25,7 +25,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
     try {
       console.log(`${_id}, ${friendId}`);
       const response = await fetch(
-        `https://whisker-gram.cyclic.app/${_id}/${friendId}`,
+        `https://whisker-gram.cyclic.app/users/${_id}/${friendId}`,
         {
           method: "PATCH",
           headers: {
