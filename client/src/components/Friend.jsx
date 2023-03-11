@@ -22,19 +22,27 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const isFriend = friends && friends.find((friend) => friend._id === friendId);
 
   const patchFriend = async () => {
-    console.log(`${_id}, ${friendId}`);
-    const response = await fetch(
-      `https://whisker-gram.cyclic.app/${_id}/${friendId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
+    try {
+      console.log(`${_id}, ${friendId}`);
+      const response = await fetch(
+        `https://whisker-gram.cyclic.app/${_id}/${friendId}`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(response.statusText);
       }
-    );
-    const data = await response.json();
-    dispatch(setFriends({ friends: data }));
+      const data = await response.json();
+      dispatch(setFriends({ friends: data }));
+    } catch (error) {
+      console.error(error);
+      // handle error here
+    }
   };
 
   return (
