@@ -1,4 +1,4 @@
-# FUTMEET
+# Whisker Gram
 
 Full Stack Social Media App for Felines!
 
