@@ -25,7 +25,8 @@ const LoginPage = () => {
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Welcome to Player Pulse, the Social Media for Athletes!
+          Greetings! You have entered Whisker Gram, a social network designed
+          for felines!
         </Typography>
         <Form />
       </Box>
